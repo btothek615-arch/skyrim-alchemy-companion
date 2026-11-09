@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Skyrim Alchemy Companion</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M12 3h8v2h-1v6.2l6.6 10.6A4 4 0 0 1 22.2 28H9.8a4 4 0 0 1-3.4-6.2L13 11.2V5h-1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 20h14l1.9 3a2 2 0 0 1-1.7 3H8.8a2 2 0 0 1-1.7-3z" fill="currentColor" opacity=".55"/></svg>
+      <div>
+        <h1>Skyrim Alchemy Companion</h1>
+        <p class="subtitle">Anniversary Edition &middot; <span id="dataCount"></span></p>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="builder" role="tab">Potion Builder</button>
+      <button class="tab" data-tab="effects" role="tab">Effects Index</button>
+      <button class="tab" data-tab="favorites" role="tab">Favorites <span class="count" id="favCount">0</span></button>
+    </nav>
+    <div class="top-controls">
+      <label class="skill" title="Alchemy skill used for magnitudes and gold value (no perks). UESP tables use 100.">
+        Skill <input type="number" id="skill" min="15" max="100" value="100" />
+      </label>
+      <select id="theme" title="Theme">
+        <option value="system">System theme</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+  </header>
+
+  <main>
+    <!-- TAB 1 -->
+    <section class="view active" id="view-builder">
+      <aside class="ing-pane">
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input id="ingSearch" type="search" placeholder="Search ingredients, effects or source…" autocomplete="off" />
+        </div>
+        <details class="sources" id="sources">
+          <summary><span class="src-title">Sources</span><span class="src-sum" id="srcSummary"></span></summary>
+          <div class="src-body" id="srcBody"></div>
+        </details>
+        <div class="list-meta">
+          <span id="listInfo"></span>
+        </div>
+        <ul id="ingList" class="ing-list" tabindex="0"></ul>
+      </aside>
+
+      <div class="work-pane">
+        <div class="slots">
+          <div class="slot card" data-slot="0"></div>
+          <div class="slot card" data-slot="1"></div>
+          <div class="slot card" data-slot="2"></div>
+        </div>
+        <div class="result card" id="result"></div>
+      </div>
+    </section>
+
+    <!-- TAB 2 -->
+    <section class="view" id="view-effects">
+      <div class="effects-head">
+        <div class="search-wrap wide">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input id="effSearch" type="search" placeholder="Search effects or ingredients…" autocomplete="off" />
+        </div>
+        <div class="seg" id="effType">
+          <button data-type="" class="on">All</button><button data-type="positive">Beneficial</button><button data-type="negative">Harmful</button>
+        </div>
+      </div>
+      <div id="effList" class="eff-list"></div>
+    </section>
+
+    <!-- TAB 3 -->
+    <section class="view" id="view-favorites">
+      <div id="favList" class="fav-list"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="data/alchemy-data.js"></script>
+  <script src="alchemy.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Keep LF line endings on every OS so app.asar (and its hash) is identical to the release build.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary

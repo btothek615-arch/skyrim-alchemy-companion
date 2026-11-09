@@ -1,0 +1,25 @@
+{
+  "name": "skyrim-alchemy-companion",
+  "productName": "Skyrim Alchemy Companion",
+  "version": "1.0.0",
+  "description": "Offline potion builder and effects index for Skyrim Anniversary Edition (data from UESP).",
+  "main": "app/main.js",
+  "author": "The Skyrim Alchemy Companion author",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "test": "node tests/logic.test.js",
+    "package:win": "node scripts/package-win.mjs",
+    "data:fetch": "python scripts/fetch_uesp.py",
+    "data": "python scripts/build_data.py"
+  },
+  "devDependencies": {
+    "@electron/packager": "20.3.0",
+    "electron": "33.4.11",
+    "resedit": "3.1.0"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

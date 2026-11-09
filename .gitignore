@@ -1,0 +1,12 @@
+node_modules/
+dist/
+out/
+*.zip
+scripts/raw/
+__pycache__/
+*.log
+.env
+.env.*
+.DS_Store
+Thumbs.db
+.abacus.donotdelete
